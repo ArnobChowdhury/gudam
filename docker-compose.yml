@@ -1,9 +1,9 @@
 version: "3.9"
 
 services:
-  backend:
-    build: ./backend
-    container_name: ponno-backend
+  api:
+    build: ./api
+    container_name: ponno-api
     ports:
       - "8000:8000"
     environment:
@@ -15,15 +15,18 @@ services:
       - redis
       - glitchtip
 
-  frontend:
-    build: ./frontend
-    container_name: ponno-frontend
+  web:
+    build: ./web
+    container_name: ponno-web
     ports:
       - "3000:3000"
     environment:
-      - NEXT_PUBLIC_API_URL=http://backend:8000
+      - NEXT_PUBLIC_API_URL=http://api:8000
+    volumes:
+      - ./web:/app
+      - /app/node_modules
     depends_on:
-      - backend
+      - api
 
   db:
     image: postgres:15

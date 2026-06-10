@@ -1,15 +1,15 @@
 version: "3.9"
 
 services:
-  backend:
+  api:
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     volumes:
-      - ./backend:/app
+      - ./api:/app
 
-  frontend:
+  web:
     command: npm run dev
     volumes:
-      - ./frontend:/app
+      - ./web:/app
       - /app/node_modules
 
   db:
