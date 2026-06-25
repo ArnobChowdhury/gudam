@@ -7,7 +7,8 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/ponno
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/ponno
+      - ALEMBIC_URL=postgresql://postgres:postgres@db:5432/ponno 
       - REDIS_URL=redis://redis:6379/0
       - GLITCHTIP_DSN=http://glitchtip:8000/api/1/store/
     depends_on:

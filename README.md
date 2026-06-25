@@ -58,6 +58,48 @@ docker compose up --build
 
 ---
 
+## 🗄️ Database Migrations
+
+All migration commands are executed inside the running container using `docker compose run api`.
+
+### Apply Migrations
+
+After starting the environment, apply migrations to the database:
+
+```bash
+docker compose run api alembic upgrade head
+```
+
+### Create a Migration
+
+After modifying models, generate a new migration:
+
+```bash
+docker compose run api alembic revision --autogenerate -m "description"
+```
+
+Then apply it:
+
+```bash
+docker compose run api alembic upgrade head
+```
+
+### Rollback Migrations
+
+To rollback the last migration:
+
+```bash
+docker compose run api alembic downgrade -1
+```
+
+To rollback all migrations:
+
+```bash
+docker compose run api alembic downgrade base
+```
+
+---
+
 ## 🏗️ Production Environment
 
 The production setup uses `docker-compose.prod.yml`. It disables hot-reloading, uses Gunicorn as a process manager for the API, and enforces health checks for all services.

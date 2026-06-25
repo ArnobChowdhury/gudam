@@ -4,4 +4,6 @@ gunicorn
 redis
 sqlalchemy
 psycopg2-binary
+asyncpg
 pydantic-settings
+alembic
