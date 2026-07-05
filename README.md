@@ -73,6 +73,23 @@ To install a new npm package in the `web` service:
    npm install
    ```
 
+### 🧩 Adding shadcn Components
+
+To add a shadcn component (e.g., `badge`):
+
+1. Run the shadcn CLI inside the container:
+
+   ```bash
+   docker compose exec web npx shadcn@latest add badge -y
+   ```
+
+2. Then install locally for IDE IntelliSense:
+
+   ```bash
+   cd web
+   npm install
+   ```
+
 ---
 
 ## 🗄️ Database Migrations
