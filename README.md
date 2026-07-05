@@ -56,6 +56,23 @@ If you add or remove packages on your host machine (via pip install or npm insta
 docker compose up --build
 ```
 
+### 📦 Installing New Frontend Packages
+
+To install a new npm package in the `web` service:
+
+1. Install the package inside the running container:
+
+   ```bash
+   docker compose exec web npm install <package-name>
+   ```
+
+2. Then install it locally for IDE IntelliSense:
+
+   ```bash
+   cd web
+   npm install
+   ```
+
 ---
 
 ## 🗄️ Database Migrations
