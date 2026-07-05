@@ -7,7 +7,6 @@ Inventory and order management system with a FastAPI backend and Next.js fronten
 ### Prerequisites
 
 - Docker and Docker Compose installed.
-- `gunicorn` and `uvicorn` added to `backend/requirements.txt`.
 
 ---
 
@@ -48,22 +47,20 @@ npm install
    - Frontend App: http://localhost:3000
    - Glitchtip: http://localhost:8001
 
-### Important: Dependency Changes
-
-If you add or remove packages on your host machine (via pip install or npm install), you must rebuild the Docker containers to sync the environment:
-
-```bash
-docker compose up --build
-```
-
 ### 📦 Installing New Frontend Packages
 
-To install a new npm package in the `web` service:
+To install a new npm package (including shadcn components) in the `web` service:
 
 1. Install the package inside the running container:
 
    ```bash
    docker compose exec web npm install <package-name>
+   ```
+
+   For shadcn components, use the CLI instead:
+
+   ```bash
+   docker compose exec web npx shadcn@latest add badge -y
    ```
 
 2. Then install it locally for IDE IntelliSense:
@@ -73,22 +70,38 @@ To install a new npm package in the `web` service:
    npm install
    ```
 
-### 🧩 Adding shadcn Components
+To uninstall a frontend package:
 
-To add a shadcn component (e.g., `badge`):
+```bash
+docker compose exec web npm uninstall <package-name>
+cd web
+npm uninstall <package-name>
+```
 
-1. Run the shadcn CLI inside the container:
+### 🐍 Installing Backend Packages
+
+To install a new Python package in the `api` service:
+
+1. Install the package inside the running container:
 
    ```bash
-   docker compose exec web npx shadcn@latest add badge -y
+   docker compose exec api pip install <package-name>
    ```
 
-2. Then install locally for IDE IntelliSense:
+2. Then install it locally for IDE IntelliSense:
 
    ```bash
-   cd web
-   npm install
+   cd api
+   pip install <package-name>
    ```
+
+To uninstall a backend package:
+
+```bash
+docker compose exec api pip uninstall <package-name>
+cd api
+pip uninstall <package-name>
+```
 
 ---
 
